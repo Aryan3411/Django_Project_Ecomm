@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'main' %}
+<title>Estore | Home</title>
+<div class="row mt-3">
+    <div class="col-md-3 bg-light">
+        <h5>Filter By Category</h5>
+        <hr>
+        <p><a class="anchor" href="/catfilter/1">By Mobile</a></p>
+        <p><a class="anchor" href="/catfilter/2">By Shoes</a></p>
+        <p><a class="anchor" href="/catfilter/3">By Clothes</a></p>
+        <h5>Filter By Price Range</h5>
+        <hr>
+        <form action="/range">
+        <div class="mb-3">
+            <label for="input1" class="form-label">Min Value</label>
+            <input type="number" name="min" class="form-control" id="input1" placeholder="Minimum Value">
+          </div>
+          <div class="mb-3">
+            <label for="input1" class="form-label">Max Value</label>
+            <input type="number" name="max" class="form-control" id="input2" placeholder="Maximum Value">
+          </div>
+          <div class="mb-3">
+            <input type="submit" class="btn btn-outline-success btn-sm" value="Search"/>
+          </div>
+          </form>
+          <h5>Sort By Size</h5>
+          <hr>
+          <p><a href="/sort/0" class="anchor">Low to High</a></p>
+          <p><a href="/sort/1" class="anchor">High to Low</a></p>
+    </div><!--Filters end here-->
+
+    <div class="col-md-9">
+        <h5>Products</h5>
+        <hr>
+        <div class="row">
+          {% for x in products %}
+            <div class="col-md-4 mt-4 mb-3">
+                <div class="card" style="width: 100%;">
+                    <img src="{{x.img.url}}" class="card-img-top" alt="..." height="250px">
+                    <div class="card-body">
+                      <h5 class="card-title">{{x.name}}</h5>
+                      <p class="card-text">Rs- {{x.price}}</p>
+                      {% if x.cat == 1 %}
+                      <p class="card-text">Mobile</p>
+                      {% elif x.cat == 2 %}
+                      <p class="card-text">Shoes</p>
+                      {% else %}
+                      <p class="card-text">Clothes</p>
+                      {% endif %}
+                      <a href="/pdetails/{{x.id}}" class="btn btn-outline-success btn-sm">See Details</a>
+                    </div>
+                  </div>
+            </div><!--Product 1 end-->
+            {% endfor %}
+        </div>
+    </div><!--Product end here-->
+</div><!--Filter ends-->
+{% endblock 'main' %}
