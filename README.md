@@ -1,4 +1,4 @@
-# Django_Project_Ecomm
+# Django_Project_Estore
 Online Store Website
 
 ## Table of Contents
